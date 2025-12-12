@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Innergy - The Mindful Planner: Your digital scrapbook for planning, journaling, and visualizing your dreams.">
+    <title>Innergy - The Mindful Planner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Noto+Sans+Thai:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="innergy.css">
+</head>
+
+<body>
+    <div class="book-container" id="bookContainer">
+        <div class="book" id="book">
+            <div class="book-cover" id="bookCover">
+                <div class="cover-texture"></div>
+                <div class="cover-content">
+                    <div class="cover-decoration top-left"></div>
+                    <div class="cover-decoration top-right"></div>
+                    <div class="cover-decoration bottom-left"></div>
+                    <div class="cover-decoration bottom-right"></div>
+                    <h1 class="cover-title">Innergy</h1>
+                    <p class="cover-subtitle">The Mindful Planner</p>
+                    <div class="cover-emblem">✦</div>
+                    <p class="cover-hint">คลิกเพื่อเปิด</p>
+                </div>
+            </div>
+            <div class="book-spine">
+                <span>INNERGY</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="app-container hidden" id="appContainer">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <h2 class="sidebar-logo">Innergy</h2>
+                <div class="sidebar-header-actions">
+                    <button class="theme-btn" id="themeBtn" title="เปลี่ยนธีมสี">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <path
+                                d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42">
+                            </path>
+                        </svg>
+                    </button>
+                    <button class="close-book-btn" id="closeBookBtn" title="ปิดสมุด">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item active" data-page="planner">
+                    <span class="nav-icon">📅</span>
+                    <span class="nav-text">Planner</span>
+                </li>
+                <li class="nav-item" data-page="vision">
+                    <span class="nav-icon">🎯</span>
+                    <span class="nav-text">Vision Board</span>
+                </li>
+                <li class="nav-item" data-page="journal">
+                    <span class="nav-icon">📝</span>
+                    <span class="nav-text">Journal</span>
+                </li>
+            </ul>
+            <div class="sidebar-footer">
+                <div class="quote-box" id="quoteBox" contenteditable="true" data-placeholder="พิมพ์คำคมของคุณที่นี่...">
+                </div>
+
+                <div class="font-size-control"
+                    style="margin-top: 20px; display: flex; align-items: center; gap: 10px; padding: 0 5px;">
+                    <span style="font-size: 12px; color: var(--color-brown);">A</span>
+                    <input type="range" id="fontSizeSlider" min="12" max="24" value="16"
+                        style="flex: 1; accent-color: var(--color-terracotta); cursor: pointer;">
+                    <span style="font-size: 18px; color: var(--color-brown);">A</span>
+                </div>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <div class="toolbar">
+                <div class="toolbar-left">
+                    <h1 class="page-title" id="pageTitle">Planner</h1>
+                </div>
+                <div class="toolbar-right">
+                    <button class="tool-btn" id="addTextBtn" title="เพิ่มข้อความ">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M4 7V4h16v3"></path>
+                            <path d="M9 20h6"></path>
+                            <path d="M12 4v16"></path>
+                        </svg>
+                        <span>ข้อความ</span>
+                    </button>
+                    <button class="tool-btn" id="addImageBtn" title="เพิ่มรูปภาพ">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                            <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                            <polyline points="21 15 16 10 5 21"></polyline>
+                        </svg>
+                        <span>รูปภาพ</span>
+                    </button>
+                    <input type="file" id="imageInput" accept="image/*" hidden>
+                    <button class="tool-btn danger" id="clearCanvasBtn" title="ล้างทั้งหมด">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polyline points="3 6 5 6 21 6"></polyline>
+                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                            </path>
+                        </svg>
+                        <span>ล้าง</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="pages-wrapper">
+                <section class="page active" id="plannerPage" data-page="planner">
+                    <div class="planner-layout">
+                        <div class="calendar-section">
+                            <div class="calendar-header">
+                                <button class="cal-nav-btn" id="prevMonth">‹</button>
+                                <h3 class="calendar-month" id="calendarMonth">December 2025</h3>
+                                <button class="cal-nav-btn" id="nextMonth">›</button>
+                            </div>
+                            <div class="calendar-grid">
+                                <div class="calendar-weekdays">
+                                    <span>อา</span><span>จ</span><span>อ</span><span>พ</span><span>พฤ</span><span>ศ</span><span>ส</span>
+                                </div>
+                                <div class="calendar-days" id="calendarDays">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="daily-canvas-section">
+                            <h3 class="canvas-date" id="canvasDate">เลือกวันจากปฏิทิน</h3>
+                            <div class="canvas" id="dailyCanvas" data-canvas="daily">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="page" id="visionPage" data-page="vision">
+                    <div class="vision-layout">
+                        <div class="canvas full-canvas" id="visionCanvas" data-canvas="vision">
+                            <div class="canvas-placeholder">
+                                <span class="placeholder-icon">✨</span>
+                                <p>พื้นที่สำหรับความฝันของคุณ</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="page" id="journalPage" data-page="journal">
+                    <div class="journal-toolbar">
+                        <div class="journal-date-picker">
+                            <input type="date" id="journalDate" class="journal-date-input">
+                        </div>
+                    </div>
+
+                    <div class="journal-layout-dual">
+                        <div class="journal-page left-page">
+                            <div class="journal-content-wrapper">
+                                <div class="journal-text" id="journalText" contenteditable="true"
+                                    data-placeholder="เขียนความคิด ความรู้สึก หรือเรื่องราวของวันนี้..."></div>
+                                <div class="canvas journal-overlay" id="journalLeftCanvas" data-canvas="journal-left">
+                                </div>
+                            </div>
+                            <div class="page-number">1</div>
+                        </div>
+
+                        <div class="journal-page right-page">
+                            <div class="journal-history-panel" id="journalHistoryPanel">
+                                <h3>เรื่องราว</h3>
+                                <div class="history-list" id="journalHistoryList">
+                                </div>
+                            </div>
+                            <div class="page-number">2</div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <div class="delete-zone hidden" id="deleteZone">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="3 6 5 6 21 6"></polyline>
+            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+        </svg>
+        <span>ลากมาวางที่นี่เพื่อลบ</span>
+    </div>
+
+    <script src="innergy.js"></script>
+</body>
+
+</html>
